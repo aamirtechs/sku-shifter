@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sku-shifter: free offline product file converter for Shopify, WooCommerce, Wix and Google Merchant Center</title>
+<meta name="description" content="Convert a product export file from Shopify, WooCommerce, Wix, Squarespace, Etsy, BigCommerce or Magento into a ready-to-import file for Shopify, WooCommerce, Wix or Google Merchant Center. Free, offline, and your file never leaves your device.">
+<meta name="keywords" content="shopify to woocommerce, woocommerce to shopify, product csv converter, catalog migration, google merchant center feed, wix products import, sku converter">
+<meta name="author" content="Amir Hussain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aamirtechs.github.io/sku-shifter/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#0b1f3a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="sku-shifter: convert product files between e-commerce platforms, offline and free">
+<meta property="og:description" content="Upload a product export from one platform, download a ready-to-import file for another, plus a full report of everything converted, transformed or dropped. Runs 100 percent in your browser.">
+<meta property="og:url" content="https://aamirtechs.github.io/sku-shifter/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sku-shifter: offline product file converter">
+<meta name="twitter:description" content="Shopify, WooCommerce, Wix, Squarespace, Etsy, BigCommerce and Magento exports converted to Shopify, WooCommerce, Wix or a Google Merchant Center feed. Free and fully local.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "sku-shifter",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Cross-platform (browser, Node.js)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Person", "name": "Amir Hussain", "url": "https://aamirtechs.com" },
+  "description": "Offline product catalog file converter with per-platform adapters and a full conversion report."
+}
+</script>
+<style>
+  :root { --navy:#0b1f3a; --navy2:#122c52; --gold:#d4a72c; --ink:#1c2733; --mut:#5a6a7a; --line:#dfe5ec; --bg:#f6f8fa; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+  h1, h2, .brand { font-family:"Sora", system-ui, sans-serif; }
+  header { background:linear-gradient(135deg, var(--navy), var(--navy2)); color:#fff; padding:56px 20px 44px; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 20px; }
+  .brand { color:var(--gold); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; }
+  header h1 { font-size:2.4rem; margin:.35em 0 .3em; line-height:1.15; }
+  header p { color:#c9d6e8; max-width:640px; font-size:1.05rem; }
+  .badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+  .badge { border:1px solid rgba(212,167,44,.55); color:#f3d98a; border-radius:999px; padding:3px 12px; font-size:.8rem; }
+  main .wrap { padding-top:28px; padding-bottom:8px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; box-shadow:0 6px 24px rgba(11,31,58,.06); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .grid{ grid-template-columns:1fr; } header h1{ font-size:1.9rem; } }
+  label { display:block; font-weight:600; font-size:.88rem; margin-bottom:6px; }
+  select, input[type="text"], input[type="url"] { width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:9px; font:inherit; background:#fff; }
+  input[type="file"] { width:100%; padding:14px; border:1.5px dashed #b9c6d4; border-radius:9px; background:#fbfcfe; }
+  .field { margin-bottom:16px; }
+  .hint { color:var(--mut); font-size:.82rem; margin-top:5px; }
+  button.go { background:var(--gold); color:#231a00; border:0; font:inherit; font-weight:700; padding:13px 26px; border-radius:10px; cursor:pointer; width:100%; font-size:1.02rem; }
+  button.go:hover { filter:brightness(1.06); }
+  button.dl { background:var(--navy); color:#fff; border:0; font:inherit; font-weight:600; padding:10px 18px; border-radius:9px; cursor:pointer; margin-right:8px; margin-top:10px; }
+  #status { margin-top:14px; font-weight:600; }
+  #status.error { color:#b3261e; }
+  pre.report { background:#0e1622; color:#d7e3f2; border-radius:12px; padding:18px; overflow:auto; max-height:480px; font-size:.82rem; line-height:1.55; white-space:pre-wrap; }
+  section.info { padding:10px 0 6px; }
+  section.info h2 { font-size:1.35rem; margin-bottom:.3em; }
+  table { border-collapse:collapse; width:100%; background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  th, td { text-align:left; padding:9px 12px; border-bottom:1px solid var(--line); font-size:.9rem; vertical-align:top; }
+  th { background:var(--navy); color:#fff; }
+  footer { border-top:1px solid var(--line); margin-top:34px; padding:26px 20px 40px; color:var(--mut); font-size:.9rem; }
+  footer a { color:var(--navy); font-weight:600; }
+  .hidden { display:none; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">sku-shifter</div>
+    <h1>Move your product catalog between platforms, by file.</h1>
+    <p>Export your products from one platform, convert the file here, and import it into the other. No store logins, no accounts, no per-SKU fees, and your file never leaves this device.</p>
+    <div class="badges"><span class="badge">100% local</span><span class="badge">Free and open source</span><span class="badge">Full conversion report</span><span class="badge">No sign-up</span></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="card">
+      <div class="field">
+        <label for="file">1. Your product export file (.csv or .tsv)</label>
+        <input type="file" id="file" accept=".csv,.tsv,.txt">
+        <div class="hint">Processed entirely in your browser. Nothing is uploaded anywhere.</div>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label for="from">2. From platform</label>
+          <select id="from">
+            <option value="">Auto-detect</option>
+            <option value="shopify">Shopify</option>
+            <option value="woocommerce">WooCommerce</option>
+            <option value="wix">Wix</option>
+            <option value="squarespace">Squarespace</option>
+            <option value="etsy">Etsy (export file)</option>
+            <option value="bigcommerce">BigCommerce</option>
+            <option value="magento">Magento / Adobe Commerce</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="to">3. To platform</label>
+          <select id="to">
+            <option value="shopify">Shopify</option>
+            <option value="woocommerce" selected>WooCommerce</option>
+            <option value="wix">Wix</option>
+            <option value="gmc">Google Merchant Center (feed)</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" id="gmcOptions" style="display:none">
+        <div class="field">
+          <label for="baseUrl">Store base URL (for product links)</label>
+          <input type="url" id="baseUrl" placeholder="https://your-store.com">
+          <div class="hint">Merchant Center needs a link per product. It is built as base URL plus product handle. Never invented: that is why the tool asks you.</div>
+        </div>
+        <div class="field">
+          <label for="currency">Currency code</label>
+          <input type="text" id="currency" placeholder="USD" maxlength="3">
+          <div class="hint">Feed prices must carry a currency, like 29.99 USD.</div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label for="srcUnit">Source weight unit (only if the source uses bare numbers)</label>
+          <select id="srcUnit"><option value="">Platform default</option><option value="kg">kg</option><option value="lb">lb</option><option value="g">g</option><option value="oz">oz</option></select>
+        </div>
+        <div class="field">
+          <label for="tgtUnit">Target weight unit</label>
+          <select id="tgtUnit"><option value="kg">kg</option><option value="lb">lb</option><option value="g">g</option><option value="oz">oz</option></select>
+        </div>
+      </div>
+      <button class="go" id="convert">Convert file</button>
+      <div id="status" role="status"></div>
+      <div id="downloads"></div>
+    </div>
+    <div id="reportWrap" class="hidden">
+      <h2 style="margin-top:28px">Conversion report</h2>
+      <pre class="report" id="report"></pre>
+    </div>
+    <section class="info">
+      <h2>What is supported</h2>
+      <table>
+        <tr><th>Platform</th><th>Read</th><th>Write</th><th>Note</th></tr>
+        <tr><td>Shopify</td><td>Yes</td><td>Yes</td><td>Both header generations read, current written.</td></tr>
+        <tr><td>WooCommerce</td><td>Yes</td><td>Yes</td><td>Variable products and variations included.</td></tr>
+        <tr><td>Wix</td><td>Yes</td><td>Yes</td><td>PRODUCT, VARIANT and MEDIA rows.</td></tr>
+        <tr><td>Squarespace</td><td>Yes</td><td>Roadmap</td><td>Its CSV cannot set featured images, so a writer would over-promise.</td></tr>
+        <tr><td>Etsy</td><td>Yes</td><td>Never</td><td>Etsy has no native listing CSV import. Its download is export-only.</td></tr>
+        <tr><td>BigCommerce</td><td>Yes</td><td>Roadmap</td><td>Modern and Legacy files read. A writer needs category and brand IDs a file cannot supply.</td></tr>
+        <tr><td>Magento</td><td>Yes</td><td>Roadmap</td><td>Configurable products reconstructed from their simple products.</td></tr>
+        <tr><td>Google Merchant Center</td><td>Feed only</td><td>Yes</td><td>Tab-delimited feed. Needs your base URL and currency.</td></tr>
+      </table>
+      <h2 style="margin-top:26px">Honest limits</h2>
+      <p>Files carry image URLs or file references, never the images themselves. Import your target store while the source store is still live so it can fetch the images. Category systems differ: some targets key categories by numeric IDs that no source file contains, and the conversion report says exactly where that applies. Nothing is dropped silently: every field that could not be carried is listed in the report with the reason.</p>
+    </section>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    Built by Amir Hussain, operations manager and founder of <a href="https://aamirtechs.com">AamirTechs: operations, customer support and e-commerce services</a>. Source code on <a href="https://github.com/aamirtechs/sku-shifter">GitHub</a>. <a href="https://github.com/aamirtechs">More open source tools</a>.
+  </div>
+</footer>
+<script src="app.js"></script>
+<script>
+(function () {
+  var toSel = document.getElementById('to');
+  var gmcOptions = document.getElementById('gmcOptions');
+  function toggleGmc() { gmcOptions.style.display = toSel.value === 'gmc' ? '' : 'none'; }
+  toSel.addEventListener('change', toggleGmc); toggleGmc();
+  function download(name, text, type) {
+    var blob = new Blob([text], { type: type || 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  }
+  document.getElementById('convert').addEventListener('click', async function () {
+    var status = document.getElementById('status');
+    var downloads = document.getElementById('downloads');
+    var reportWrap = document.getElementById('reportWrap');
+    status.className = ''; status.textContent = ''; downloads.innerHTML = ''; reportWrap.classList.add('hidden');
+    var file = document.getElementById('file').files[0];
+    if (!file) { status.className = 'error'; status.textContent = 'Choose a product export file first.'; return; }
+    try {
+      var buf = await file.arrayBuffer();
+      var options = { to: toSel.value };
+      var from = document.getElementById('from').value;
+      if (from) options.from = from;
+      if (options.to === 'gmc') {
+        options.baseUrl = document.getElementById('baseUrl').value.trim();
+        options.currency = document.getElementById('currency').value.trim();
+      }
+      var srcUnit = document.getElementById('srcUnit').value;
+      if (srcUnit) options.sourceWeightUnit = srcUnit;
+      options.targetWeightUnit = document.getElementById('tgtUnit').value;
+      var result = window.SkuShifter.convertFile(new Uint8Array(buf), options);
+      status.textContent = 'Converted ' + result.report.products + ' products, ' + result.report.variants + ' variants, ' + result.report.rowsWritten + ' rows written.';
+      var b1 = document.createElement('button'); b1.className = 'dl'; b1.textContent = 'Download ' + result.outputName;
+      b1.addEventListener('click', function () { download(result.outputName, result.output, 'text/csv;charset=utf-8'); });
+      var b2 = document.createElement('button'); b2.className = 'dl'; b2.textContent = 'Download conversion report (.md)';
+      b2.addEventListener('click', function () { download(result.outputName + '.report.md', result.reportText, 'text/markdown;charset=utf-8'); });
+      downloads.appendChild(b1); downloads.appendChild(b2);
+      document.getElementById('report').textContent = result.reportText;
+      reportWrap.classList.remove('hidden');
+    } catch (e) {
+      status.className = 'error';
+      status.textContent = e.message;
+    }
+  });
+})();
+</script>
+</body>
+</html>
